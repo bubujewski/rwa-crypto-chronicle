@@ -11,7 +11,7 @@ const Navigation = () => {
     { label: 'Roadmap', href: '#roadmap' },
     { label: 'WhitePaper', href: '/whitepaper.pdf', icon: FileText, external: true },
     { label: 'Pitchdeck', href: '/pitchdeck.pdf', icon: Presentation, external: true },
-    { label: 'Financials', href: '/financials', icon: BarChart3, external: false },
+    { label: 'Financials', href: '#financials', icon: BarChart3, external: false },
   ];
 
   const handleNavClick = (href: string, external?: boolean) => {
