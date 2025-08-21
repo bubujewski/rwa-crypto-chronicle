@@ -1,14 +1,12 @@
 import React from 'react';
-import { ArrowLeft, TrendingUp, DollarSign, Users, Target } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { TrendingUp, DollarSign, Users, Target } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import {
-  LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, BarChart, Bar,
+  LineChart, Line, AreaChart, Area, BarChart, Bar,
   XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend, Tooltip
 } from 'recharts';
 
-const Financials = () => {
+const FinancialsSection = () => {
   // Revenue projections data
   const revenueData = [
     { year_label: 'Year 1', year: 1, revenue: 1.34, expenses: 2.2, netIncome: -0.86, users: 5, unlockRev: 0.9, vaultAUM: 25, perfFees: 0.38, metaVaultFees: 0.06 },
@@ -16,15 +14,6 @@ const Financials = () => {
     { year_label: 'Year 3', year: 3, revenue: 17.8, expenses: 8.6, netIncome: 9.2, users: 60, unlockRev: 10.8, vaultAUM: 400, perfFees: 6.0, metaVaultFees: 1.0 },
     { year_label: 'Year 4', year: 4, revenue: 39.1, expenses: 14.2, netIncome: 24.9, users: 120, unlockRev: 21.6, vaultAUM: 1000, perfFees: 15.0, metaVaultFees: 2.5 },
     { year_label: 'Year 5', year: 5, revenue: 79.75, expenses: 20.5, netIncome: 59.25, users: 200, unlockRev: 36.0, vaultAUM: 2500, perfFees: 37.5, metaVaultFees: 6.25 },
-  ];
-
-  // Expense breakdown data  
-  const expenseData = [
-    { year: 'Year 1', salaries: 1.0, marketing: 0.5, infra: 0.2, audits: 0.3, misc: 0.2, total: 2.2 },
-    { year: 'Year 2', salaries: 2.5, marketing: 1.0, infra: 0.4, audits: 0.2, misc: 0.3, total: 4.4 },
-    { year: 'Year 3', salaries: 5.0, marketing: 2.0, infra: 0.8, audits: 0.3, misc: 0.5, total: 8.6 },
-    { year: 'Year 4', salaries: 8.0, marketing: 3.5, infra: 1.5, audits: 0.4, misc: 0.8, total: 14.2 },
-    { year: 'Year 5', salaries: 12.0, marketing: 5.0, infra: 2.0, audits: 0.5, misc: 1.0, total: 20.5 },
   ];
 
   // ARPU evolution data
@@ -73,30 +62,21 @@ const Financials = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation Header */}
-      <div className="border-b bg-card/50 backdrop-blur-lg sticky top-0 z-40">
-        <div className="signal-container">
-          <div className="flex items-center gap-4 py-4 px-4">
-            <Link to="/">
-              <Button variant="outline" size="sm" className="gap-2">
-                <ArrowLeft size={16} />
-                Back to Home
-              </Button>
-            </Link>
-            <div>
-              <h1 className="text-2xl font-bold text-primary">SIGNAL - Financial Projections</h1>
-              <p className="text-sm text-muted-foreground">5 Year Strategic Financial Overview</p>
-            </div>
-          </div>
+    <section id="financials" className="signal-section bg-gradient-to-b from-card/20 to-background">
+      <div className="signal-container">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 animate-fade-in-up">
+            <span className="signal-text-gradient">Financial</span> Projections
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto animate-fade-in-up animate-delay-200">
+            5 Year Strategic Financial Overview - From Startup to Industry Leader
+          </p>
         </div>
-      </div>
 
-      <div className="signal-container py-8 px-4">
         {/* Key Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {keyMetrics.map((metric, index) => (
-            <Card key={index} className={`bg-card/50 backdrop-blur-sm border-primary/20 hover-scale animate-fade-in`} 
+            <Card key={index} className={`signal-card hover:signal-glow transition-all duration-300 animate-fade-in`} 
                   style={{ animationDelay: `${index * 150}ms` }}>
               <CardHeader className="pb-2">
                 <CardDescription className="text-xs animate-slide-up" style={{ animationDelay: `${index * 150 + 200}ms` }}>
@@ -118,7 +98,7 @@ const Financials = () => {
         </div>
 
         {/* Key Assumptions Section */}
-        <Card className="bg-card/50 backdrop-blur-sm border-primary/20 mb-8 animate-slide-up" style={{ animationDelay: '600ms' }}>
+        <Card className="signal-card mb-16 animate-slide-up" style={{ animationDelay: '600ms' }}>
           <CardHeader>
             <CardTitle className="text-primary flex items-center gap-2 animate-fade-in" style={{ animationDelay: '800ms' }}>
               <Target className="text-primary animate-wiggle" size={24} style={{ animationDelay: '900ms' }} />
@@ -155,12 +135,12 @@ const Financials = () => {
           </CardContent>
         </Card>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {/* Revenue Overview Chart */}
-          <Card className="bg-card/50 backdrop-blur-sm border-primary/20 animate-slide-in-left" style={{ animationDelay: '1800ms' }}>
+          <Card className="signal-card animate-slide-in-left" style={{ animationDelay: '1800ms' }}>
             <CardHeader>
               <CardTitle className="text-primary animate-fade-in" style={{ animationDelay: '2000ms' }}>
-                1. Revenue Projections Overview
+                Revenue Projections Overview
               </CardTitle>
               <CardDescription className="animate-fade-in" style={{ animationDelay: '2100ms' }}>
                 Total Revenue Growth: $1.34M → $79.75M
@@ -202,10 +182,10 @@ const Financials = () => {
           </Card>
 
           {/* Revenue vs Expenses */}
-          <Card className="bg-card/50 backdrop-blur-sm border-primary/20 animate-slide-in-right" style={{ animationDelay: '1900ms' }}>
+          <Card className="signal-card animate-slide-in-right" style={{ animationDelay: '1900ms' }}>
             <CardHeader>
               <CardTitle className="text-primary animate-fade-in" style={{ animationDelay: '2100ms' }}>
-                3. Net Income & Cash Flow
+                Net Income & Cash Flow
               </CardTitle>
               <CardDescription className="animate-fade-in" style={{ animationDelay: '2200ms' }}>
                 Breakeven achieved in Year 2
@@ -238,10 +218,10 @@ const Financials = () => {
         </div>
 
         {/* Revenue Breakdown Table */}
-        <Card className="bg-card/50 backdrop-blur-sm border-primary/20 mb-8 animate-slide-up" style={{ animationDelay: '2400ms' }}>
+        <Card className="signal-card mb-16 animate-slide-up" style={{ animationDelay: '2400ms' }}>
           <CardHeader>
             <CardTitle className="text-primary animate-fade-in" style={{ animationDelay: '2600ms' }}>
-              1. Revenue Projections - Detailed Breakdown
+              Revenue Projections - Detailed Breakdown
             </CardTitle>
             <CardDescription className="animate-fade-in" style={{ animationDelay: '2700ms' }}>
               Revenue streams and user growth projections
@@ -280,83 +260,9 @@ const Financials = () => {
           </CardContent>
         </Card>
 
-        {/* Expense Breakdown */}
-        <Card className="bg-card/50 backdrop-blur-sm border-primary/20 mb-8 animate-slide-up">
-          <CardHeader>
-            <CardTitle className="text-primary">2. Expense Projections</CardTitle>
-            <CardDescription>Operating expense categories and scaling</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-primary/20">
-                    <th className="text-left py-3 px-4 font-semibold text-primary">Category</th>
-                    <th className="text-right py-3 px-4 font-semibold text-primary">Year 1</th>
-                    <th className="text-right py-3 px-4 font-semibold text-primary">Year 2</th>
-                    <th className="text-right py-3 px-4 font-semibold text-primary">Year 3</th>
-                    <th className="text-right py-3 px-4 font-semibold text-primary">Year 4</th>
-                    <th className="text-right py-3 px-4 font-semibold text-primary">Year 5</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-border/50">
-                    <td className="py-3 px-4 font-medium">Salaries & Ops</td>
-                    <td className="text-right py-3 px-4">$1.0M</td>
-                    <td className="text-right py-3 px-4">$2.5M</td>
-                    <td className="text-right py-3 px-4">$5.0M</td>
-                    <td className="text-right py-3 px-4">$8.0M</td>
-                    <td className="text-right py-3 px-4">$12.0M</td>
-                  </tr>
-                  <tr className="border-b border-border/50">
-                    <td className="py-3 px-4 font-medium">Marketing & Growth</td>
-                    <td className="text-right py-3 px-4">$0.5M</td>
-                    <td className="text-right py-3 px-4">$1.0M</td>
-                    <td className="text-right py-3 px-4">$2.0M</td>
-                    <td className="text-right py-3 px-4">$3.5M</td>
-                    <td className="text-right py-3 px-4">$5.0M</td>
-                  </tr>
-                  <tr className="border-b border-border/50">
-                    <td className="py-3 px-4 font-medium">Infra & Oracles</td>
-                    <td className="text-right py-3 px-4">$0.2M</td>
-                    <td className="text-right py-3 px-4">$0.4M</td>
-                    <td className="text-right py-3 px-4">$0.8M</td>
-                    <td className="text-right py-3 px-4">$1.5M</td>
-                    <td className="text-right py-3 px-4">$2.0M</td>
-                  </tr>
-                  <tr className="border-b border-border/50">
-                    <td className="py-3 px-4 font-medium">Audits & Legal</td>
-                    <td className="text-right py-3 px-4">$0.3M</td>
-                    <td className="text-right py-3 px-4">$0.2M</td>
-                    <td className="text-right py-3 px-4">$0.3M</td>
-                    <td className="text-right py-3 px-4">$0.4M</td>
-                    <td className="text-right py-3 px-4">$0.5M</td>
-                  </tr>
-                  <tr className="border-b border-border/50">
-                    <td className="py-3 px-4 font-medium">Misc & Operations</td>
-                    <td className="text-right py-3 px-4">$0.2M</td>
-                    <td className="text-right py-3 px-4">$0.3M</td>
-                    <td className="text-right py-3 px-4">$0.5M</td>
-                    <td className="text-right py-3 px-4">$0.8M</td>
-                    <td className="text-right py-3 px-4">$1.0M</td>
-                  </tr>
-                  <tr className="border-t border-primary/40 bg-primary/5">
-                    <td className="py-3 px-4 font-bold text-primary">Total Expenses</td>
-                    <td className="text-right py-3 px-4 font-bold text-red-400">$2.2M</td>
-                    <td className="text-right py-3 px-4 font-bold text-red-400">$4.4M</td>
-                    <td className="text-right py-3 px-4 font-bold text-red-400">$8.6M</td>
-                    <td className="text-right py-3 px-4 font-bold text-red-400">$14.2M</td>
-                    <td className="text-right py-3 px-4 font-bold text-red-400">$20.5M</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {/* Unit Economics */}
-          <Card className="bg-card/50 backdrop-blur-sm border-primary/20 animate-fade-in">
+          <Card className="signal-card animate-fade-in">
             <CardHeader>
               <CardTitle className="text-primary">Unit Economics & KPIs</CardTitle>
               <CardDescription>ARPU Evolution Over Time</CardDescription>
@@ -386,7 +292,7 @@ const Financials = () => {
           </Card>
 
           {/* User Growth */}
-          <Card className="bg-card/50 backdrop-blur-sm border-primary/20 animate-fade-in">
+          <Card className="signal-card animate-fade-in">
             <CardHeader>
               <CardTitle className="text-primary">User Growth Trajectory</CardTitle>
               <CardDescription>Scaling from 5k to 200k users</CardDescription>
@@ -428,7 +334,7 @@ const Financials = () => {
         </div>
 
         {/* Conservative vs Aggressive Scenarios */}
-        <Card className="bg-card/50 backdrop-blur-sm border-primary/20 mb-8 animate-slide-up">
+        <Card className="signal-card mb-16 animate-slide-up">
           <CardHeader>
             <CardTitle className="text-primary">Conservative vs Aggressive Scenarios</CardTitle>
             <CardDescription>Revenue projections under different growth assumptions</CardDescription>
@@ -511,9 +417,9 @@ const Financials = () => {
         </Card>
 
         {/* Key Insights */}
-        <Card className="bg-card/50 backdrop-blur-sm border-primary/20 mb-8 animate-fade-in">
+        <Card className="signal-card mb-16 animate-fade-in">
           <CardHeader>
-            <CardTitle className="text-primary">4. Key Insights & Takeaways</CardTitle>
+            <CardTitle className="text-primary">Key Insights & Takeaways</CardTitle>
             <CardDescription>Critical business metrics and projections</CardDescription>
           </CardHeader>
           <CardContent>
@@ -547,7 +453,7 @@ const Financials = () => {
         </Card>
 
         {/* Investment Highlights */}
-        <Card className="bg-card/50 backdrop-blur-sm border-primary/20 animate-fade-in">
+        <Card className="signal-card animate-fade-in">
           <CardHeader>
             <CardTitle className="text-primary">Investment Highlights</CardTitle>
             <CardDescription>Why SIGNAL represents an exceptional opportunity</CardDescription>
@@ -584,8 +490,8 @@ const Financials = () => {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Financials;
+export default FinancialsSection;
